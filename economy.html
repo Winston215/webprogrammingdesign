@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indonesia's Economy - Explore Indonesia</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+
+<body>
+    <div class="hero-bg">
+        <video autoplay loop muted playsinline>
+            <source src="images/economy.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
+    </div>
+    <header class="modern-header">
+        <div class="logo-area">
+            <img src="images/Wonderful_Indonesia_logo.png" alt="Explore Indonesia Logo">
+        </div>
+        <nav class="modern-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="geography.html">Geography</a></li>
+                <li><a href="culture.html">Culture</a></li>
+                <li><a href="wildlife.html">Wildlife</a></li>
+                <li><a href="tourism.html">Tourism</a></li>
+                <li><a href="economy.html" class="active">Economy</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="modern-hero-content"
+        style="justify-content: center; align-items: center; text-align: center; flex-direction: column;">
+        <h1
+            style="font-size:9vw;font-weight:900;color:#fff;letter-spacing:8px;text-shadow:0 8px 40px rgba(0,0,0,0.32);margin:0 0 1.5rem 0;line-height:1.02;">
+            ECONOMY</h1>
+        <p
+            style="font-size:1.3vw;color:#fff;max-width:900px;margin:0 auto 0;line-height:1.3;text-shadow:0 3px 18px rgba(0,0,0,0.22);font-weight:500;">
+            Discover the dynamic economic landscape of Southeast Asia's largest economy</p>
+    </main>
+
+    <!-- Economic Overview Section with Animated Stats -->
+    <section class="economy-overview-section">
+        <div class="content-container">
+            <h2 class="section-title">Economic Powerhouse in Numbers</h2>
+            <div class="stats-grid">
+                <div class="stat-card" data-aos="fade-up">
+                    <div class="stat-number" data-value="1.4">$1.4T</div>
+                    <div class="stat-label">GDP (2023)</div>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-number" data-value="5.2">5.2%</div>
+                    <div class="stat-label">Annual Growth Rate</div>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-number" data-value="270">270M+</div>
+                    <div class="stat-label">Population</div>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-number" data-value="16">16th</div>
+                    <div class="stat-label">Largest Economy</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GDP Growth Chart Section -->
+    <section class="economy-chart-section">
+        <div class="content-container">
+            <h2 class="section-title">Economic Growth Trajectory</h2>
+            <div class="chart-container">
+                <canvas id="gdpGrowthChart"></canvas>
+            </div>
+            <div class="chart-legend">
+                <div class="legend-item">
+                    <span class="legend-color" style="background: #4CAF50;"></span>
+                    <span>Actual Growth</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color" style="background: #2196F3;"></span>
+                    <span>Projected Growth</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Economic Sectors Section -->
+    <section class="economy-sectors-section">
+        <div class="content-container">
+            <h2 class="section-title">Key Economic Sectors</h2>
+            <div class="sectors-grid">
+                <div class="sector-card" data-aos="flip-left">
+                    <div class="sector-icon">🌾</div>
+                    <h3>Agriculture</h3>
+                    <div class="sector-stats">
+                        <div class="stat">
+                            <span class="stat-value">30%</span>
+                            <span class="stat-label">Workforce</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">$50B+</span>
+                            <span class="stat-label">Annual Export</span>
+                        </div>
+                    </div>
+                    <p>World's largest producer of palm oil, major exporter of rubber, coffee, and spices.</p>
+                </div>
+
+                <div class="sector-card" data-aos="flip-left" data-aos-delay="100">
+                    <div class="sector-icon">🏭</div>
+                    <h3>Manufacturing</h3>
+                    <div class="sector-stats">
+                        <div class="stat">
+                            <span class="stat-value">20%</span>
+                            <span class="stat-label">GDP Share</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">$200B+</span>
+                            <span class="stat-label">Annual Output</span>
+                        </div>
+                    </div>
+                    <p>Growing automotive, electronics, and textile industries.</p>
+                </div>
+
+                <div class="sector-card" data-aos="flip-left" data-aos-delay="200">
+                    <div class="sector-icon">💼</div>
+                    <h3>Services</h3>
+                    <div class="sector-stats">
+                        <div class="stat">
+                            <span class="stat-value">45%</span>
+                            <span class="stat-label">GDP Share</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">$15B+</span>
+                            <span class="stat-label">Tech Investment</span>
+                        </div>
+                    </div>
+                    <p>Rapid growth in finance, tourism, and digital services.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Outlook Section with Interactive Timeline -->
+    <section class="economy-future-section">
+        <div class="content-container">
+            <h2 class="section-title">Future Economic Outlook</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-date">2025</div>
+                    <div class="timeline-content">
+                        <h3>Digital Economy Boom</h3>
+                        <p>Projected to reach $130B in digital economy value</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-date">2030</div>
+                    <div class="timeline-content">
+                        <h3>Infrastructure Development</h3>
+                        <p>$400B investment in infrastructure projects</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-date">2035</div>
+                    <div class="timeline-content">
+                        <h3>Green Economy Transition</h3>
+                        <p>Target of 23% renewable energy mix</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-date">2045</div>
+                    <div class="timeline-content">
+                        <h3>Golden Indonesia Vision</h3>
+                        <p>Aiming to become the world's 4th largest economy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Opportunities Section -->
+    <section class="economy-investment-section">
+        <div class="content-container">
+            <h2 class="section-title">Investment Opportunities</h2>
+            <div class="investment-grid">
+                <div class="investment-card" data-aos="zoom-in">
+                    <div class="investment-icon">🏗️</div>
+                    <h3>Infrastructure</h3>
+                    <ul>
+                        <li>Smart Cities Development</li>
+                        <li>Transportation Networks</li>
+                        <li>Energy Infrastructure</li>
+                    </ul>
+                </div>
+                <div class="investment-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="investment-icon">💻</div>
+                    <h3>Digital Economy</h3>
+                    <ul>
+                        <li>E-commerce Platforms</li>
+                        <li>Fintech Solutions</li>
+                        <li>Digital Services</li>
+                    </ul>
+                </div>
+                <div class="investment-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="investment-icon">🌱</div>
+                    <h3>Green Economy</h3>
+                    <ul>
+                        <li>Renewable Energy</li>
+                        <li>Sustainable Agriculture</li>
+                        <li>Eco-tourism</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Explore Indonesia</h3>
+                <p>Discover the beauty and diversity of Indonesia, the world's largest archipelago with over 17,000
+                    islands.</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="geography.html">Geography</a></li>
+                    <li><a href="culture.html">Culture</a></li>
+                    <li><a href="wildlife.html">Wildlife</a></li>
+                    <li><a href="tourism.html">Tourism</a></li>
+                    <li><a href="economy.html">Economy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <p>Email: info@exploreindonesia.com</p>
+                <p>Phone: +62 123 456 789</p>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2023 Explore Indonesia. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // GDP Growth Chart
+        const ctx = document.getElementById('gdpGrowthChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: 'Actual Growth',
+                    data: [5.2, 5.0, -2.1, 3.7, 5.3, 5.2, 5.4, 5.5],
+                    borderColor: '#4CAF50',
+                    tension: 0.4,
+                    fill: false
+                }, {
+                    label: 'Projected Growth',
+                    data: [null, null, null, null, null, 5.2, 5.4, 5.5],
+                    borderColor: '#2196F3',
+                    borderDash: [5, 5],
+                    tension: 0.4,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: -3,
+                        max: 7
+                    }
+                }
+            }
+        });
+
+        // Animate stats on scroll
+        const stats = document.querySelectorAll('.stat-number');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        });
+
+        stats.forEach(stat => observer.observe(stat));
+    </script>
+</body>
+
+</html>

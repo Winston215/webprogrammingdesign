@@ -10,9 +10,297 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        .scroll-progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            z-index: 1001;
+            background: transparent;
+        }
+
+        .scroll-progress {
+            height: 100%;
+            background: linear-gradient(to right, #e4002b, #ffd700);
+            width: 0;
+            transition: width 0.1s ease-out;
+        }
+
+        .text-reveal {
+            animation: textReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes textReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Economy Page Specific Styles */
+        .economy-overview-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #e4002b;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .stat-number.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .economy-chart-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .chart-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        .economy-sectors-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .sectors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .sector-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .sector-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .sector-icon {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .sector-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            display: block;
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #e4002b;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .economy-future-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 40px auto;
+        }
+
+        .timeline-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .timeline-line {
+            width: 4px;
+            height: 100%;
+            background: #e4002b;
+        }
+
+        .timeline-date {
+            background: #e4002b;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin: 0 24px;
+            min-width: 70px;
+            text-align: center;
+        }
+
+        .timeline-card {
+            background: white;
+            padding: 24px 32px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            min-width: 320px;
+            max-width: 380px;
+        }
+
+        @media (max-width: 800px) {
+            .timeline-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline-card {
+                min-width: 0;
+                max-width: 100%;
+            }
+
+            .timeline-date {
+                margin: 16px 0;
+            }
+        }
+
+        .economy-investment-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .investment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .investment-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .investment-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .investment-icon {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .investment-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .investment-card li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .investment-card li:last-child {
+            border-bottom: none;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Add scroll progress indicator -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress"></div>
+    </div>
+
     <div class="hero-bg">
         <video autoplay loop muted playsinline>
             <source src="images/economy.mp4" type="video/mp4">
@@ -150,35 +438,47 @@
     <section class="economy-future-section">
         <div class="content-container">
             <h2 class="section-title">Future Economic Outlook</h2>
-            <div class="timeline">
-                <div class="timeline-item" data-aos="fade-right">
+            <div class="timeline-grid">
+                <!-- 2025: Right card -->
+                <div></div>
+                <div class="timeline-center">
+                    <div class="timeline-line"></div>
                     <div class="timeline-date">2025</div>
-                    <div class="timeline-content">
-                        <h3>Digital Economy Boom</h3>
-                        <p>Projected to reach $130B in digital economy value</p>
-                    </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-card">
+                    <h3>Digital Economy Boom</h3>
+                    <p>Projected to reach $130B in digital economy value</p>
+                </div>
+                <!-- 2030: Left card -->
+                <div class="timeline-card">
+                    <h3>Infrastructure Development</h3>
+                    <p>$400B investment in infrastructure projects</p>
+                </div>
+                <div class="timeline-center">
+                    <div class="timeline-line"></div>
                     <div class="timeline-date">2030</div>
-                    <div class="timeline-content">
-                        <h3>Infrastructure Development</h3>
-                        <p>$400B investment in infrastructure projects</p>
-                    </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-right">
+                <div></div>
+                <!-- 2035: Right card -->
+                <div></div>
+                <div class="timeline-center">
+                    <div class="timeline-line"></div>
                     <div class="timeline-date">2035</div>
-                    <div class="timeline-content">
-                        <h3>Green Economy Transition</h3>
-                        <p>Target of 23% renewable energy mix</p>
-                    </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-card">
+                    <h3>Green Economy Transition</h3>
+                    <p>Target of 23% renewable energy mix</p>
+                </div>
+                <!-- 2045: Left card -->
+                <div class="timeline-card">
+                    <h3>Golden Indonesia Vision</h3>
+                    <p>Aiming to become the world's 4th largest economy</p>
+                </div>
+                <div class="timeline-center">
+                    <div class="timeline-line"></div>
                     <div class="timeline-date">2045</div>
-                    <div class="timeline-content">
-                        <h3>Golden Indonesia Vision</h3>
-                        <p>Aiming to become the world's 4th largest economy</p>
-                    </div>
                 </div>
+                <div></div>
             </div>
         </div>
     </section>
@@ -198,21 +498,21 @@
                     </ul>
                 </div>
                 <div class="investment-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="investment-icon">🌱</div>
+                    <h3>Green Energy</h3>
+                    <ul>
+                        <li>Renewable Energy Projects</li>
+                        <li>Sustainable Development</li>
+                        <li>Carbon Trading</li>
+                    </ul>
+                </div>
+                <div class="investment-card" data-aos="zoom-in" data-aos-delay="200">
                     <div class="investment-icon">💻</div>
                     <h3>Digital Economy</h3>
                     <ul>
                         <li>E-commerce Platforms</li>
                         <li>Fintech Solutions</li>
                         <li>Digital Services</li>
-                    </ul>
-                </div>
-                <div class="investment-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="investment-icon">🌱</div>
-                    <h3>Green Economy</h3>
-                    <ul>
-                        <li>Renewable Energy</li>
-                        <li>Sustainable Agriculture</li>
-                        <li>Eco-tourism</li>
                     </ul>
                 </div>
             </div>
@@ -256,58 +556,233 @@
         // Initialize AOS
         AOS.init({
             duration: 1000,
-            once: true
+            once: true,
+            offset: 100,
+            delay: 0,
+            easing: 'ease-in-out-cubic',
+            mirror: false,
+            anchorPlacement: 'top-bottom'
         });
 
-        // GDP Growth Chart
-        const ctx = document.getElementById('gdpGrowthChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
-                datasets: [{
-                    label: 'Actual Growth',
-                    data: [5.2, 5.0, -2.07, 3.7, 5.31, 5.05, null, null],
-                    borderColor: '#4CAF50',
-                    tension: 0.4,
-                    fill: false
-                }, {
-                    label: 'Projected Growth',
-                    data: [null, null, null, null, null, 5.05, 5.03, 4.65],
-                    borderColor: '#2196F3',
-                    borderDash: [5, 5],
-                    tension: 0.4,
-                    fill: false
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
+        window.onload = function () {
+            // GDP Growth Chart
+            const ctx = document.getElementById('gdpGrowthChart').getContext('2d');
+            const gdpGrowthChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                    datasets: [{
+                        label: 'Actual Growth',
+                        data: [5.2, 5.0, -2.1, 3.7, 5.3, 5.2, 5.1, null],
+                        borderColor: '#4CAF50',
+                        backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }, {
+                        label: 'Projected Growth',
+                        data: [null, null, null, null, null, 5.2, 5.1, 5.3],
+                        borderColor: '#2196F3',
+                        backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                        borderDash: [5, 5],
+                        tension: 0.4,
+                        fill: true
+                    }]
                 },
-                scales: {
-                    y: {
-                        beginAtZero: false,
-                        min: -3,
-                        max: 7
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: -3,
+                            max: 7,
+                            ticks: {
+                                callback: function (value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    },
+                    interaction: {
+                        mode: 'nearest',
+                        axis: 'x',
+                        intersect: false
                     }
-                }
-            }
-        });
-
-        // Animate stats on scroll
-        const stats = document.querySelectorAll('.stat-number');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
                 }
             });
-        });
 
-        stats.forEach(stat => observer.observe(stat));
+            // Animate stat numbers
+            document.querySelectorAll('.stat-number').forEach(function (el) {
+                const value = parseFloat(el.getAttribute('data-value'));
+                let suffix = '';
+                const label = el.parentElement.querySelector('.stat-label').textContent;
+                if (label.includes('GDP')) {
+                    suffix = 'T';
+                    el.textContent = '$' + value + suffix;
+                } else if (label.includes('Population')) {
+                    suffix = 'M+';
+                    el.textContent = value + suffix;
+                } else if (label.includes('Growth')) {
+                    suffix = '%';
+                    el.textContent = value + suffix;
+                } else if (label.includes('Largest')) {
+                    suffix = 'th';
+                    el.textContent = value + suffix;
+                } else {
+                    el.textContent = value;
+                }
+                console.log('Stat card updated:', label, el.textContent);
+            });
+
+            // Add smooth scroll behavior
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Add parallax effect to hero section
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const heroContent = document.querySelector('.modern-hero-content');
+                if (heroContent) {
+                    heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
+                }
+            });
+
+            // Add hover effect to cards
+            document.querySelectorAll('.card, .sector-card, .investment-card').forEach(card => {
+                card.addEventListener('mouseenter', function () {
+                    this.style.transform = 'translateY(-15px) scale(1.02)';
+                    this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.2)';
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    this.style.transform = 'translateY(0) scale(1)';
+                    this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+                });
+            });
+
+            // Add text reveal animation
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('text-reveal');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.section-title, .sector-card h3, .investment-card h3').forEach(element => {
+                observer.observe(element);
+            });
+
+            // Add loading animation
+            document.body.classList.add('loaded');
+
+            // Add scroll progress indicator
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+
+                const progressBar = document.querySelector('.scroll-progress');
+                if (progressBar) {
+                    progressBar.style.width = scrolled + '%';
+                }
+            });
+
+            // Add dynamic background color change on scroll
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                const header = document.querySelector('.modern-header');
+
+                if (header) {
+                    if (scrollPosition > 100) {
+                        header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                        header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                    } else {
+                        header.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                        header.style.boxShadow = 'none';
+                    }
+                }
+            });
+
+            // Add smooth reveal for statistics
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const statNumber = entry.target.querySelector('.stat-number');
+                        if (statNumber) {
+                            const value = statNumber.getAttribute('data-value');
+                            const isPercentage = statNumber.textContent.includes('%');
+                            const isDollar = statNumber.textContent.includes('$');
+                            const isOrdinal = statNumber.textContent.includes('th');
+
+                            let finalValue = parseFloat(value);
+                            let currentValue = 0;
+                            const duration = 2000;
+                            const increment = finalValue / (duration / 16);
+
+                            const counter = setInterval(() => {
+                                currentValue += increment;
+                                if (currentValue >= finalValue) {
+                                    let displayValue = finalValue;
+                                    if (isPercentage) {
+                                        displayValue = finalValue.toFixed(1) + '%';
+                                    } else if (isDollar) {
+                                        displayValue = '$' + finalValue.toFixed(1) + 'T';
+                                    } else if (isOrdinal) {
+                                        displayValue = finalValue + 'th';
+                                    } else {
+                                        displayValue = Math.floor(finalValue).toLocaleString() + '+';
+                                    }
+                                    statNumber.textContent = displayValue;
+                                    clearInterval(counter);
+                                } else {
+                                    let displayValue = currentValue;
+                                    if (isPercentage) {
+                                        displayValue = currentValue.toFixed(1) + '%';
+                                    } else if (isDollar) {
+                                        displayValue = '$' + currentValue.toFixed(1) + 'T';
+                                    } else if (isOrdinal) {
+                                        displayValue = Math.floor(currentValue) + 'th';
+                                    } else {
+                                        displayValue = Math.floor(currentValue).toLocaleString() + '+';
+                                    }
+                                    statNumber.textContent = displayValue;
+                                }
+                            }, 16);
+                        }
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            document.querySelectorAll('.stat-card').forEach(stat => {
+                statsObserver.observe(stat);
+            });
+        }
     </script>
 </body>
 

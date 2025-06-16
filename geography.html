@@ -9,9 +9,61 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        .scroll-progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            z-index: 1001;
+            background: transparent;
+        }
+
+        .scroll-progress {
+            height: 100%;
+            background: linear-gradient(to right, #e4002b, #ffd700);
+            width: 0;
+            transition: width 0.1s ease-out;
+        }
+
+        .text-reveal {
+            animation: textReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes textReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Add scroll progress indicator -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress"></div>
+    </div>
 
     <div class="hero-bg">
         <video autoplay loop muted playsinline>
@@ -37,35 +89,35 @@
     </header>
     <main class="modern-hero-content"
         style="justify-content: center; align-items: center; text-align: center; flex-direction: column;">
-        <h1
-            style="font-size:9vw;font-weight:900;color:#fff;letter-spacing:8px;text-shadow:0 8px 40px rgba(0,0,0,0.32);margin:0 0 1.5rem 0;line-height:1.02;">
+        <h1 style="font-size:9vw;font-weight:900;color:#fff;letter-spacing:8px;text-shadow:0 8px 40px rgba(0,0,0,0.32);margin:0 0 1.5rem 0;line-height:1.02;"
+            data-aos="float-up">
             GEOGRAPHY</h1>
-        <p
-            style="font-size:1.3vw;color:#fff;max-width:900px;margin:0 auto 0;line-height:1.3;text-shadow:0 3px 18px rgba(0,0,0,0.22);font-weight:500;">
+        <p style="font-size:1.3vw;color:#fff;max-width:900px;margin:0 auto 0;line-height:1.3;text-shadow:0 3px 18px rgba(0,0,0,0.22);font-weight:500;"
+            data-aos="float-up" data-aos-delay="200">
             Explore the diverse landscapes of the Indonesian archipelago.</p>
     </main>
 
     <!-- Geography Overview Section - Redesigned -->
     <section class="geography-overview-redesigned-section">
         <div class="content-container">
-            <h2 class="section-title">Indonesia's Diverse Geography at a Glance</h2>
+            <h2 class="section-title" data-aos="float-up">Indonesia's Diverse Geography at a Glance</h2>
             <div class="overview-grid">
-                <div class="overview-item-redesigned">
+                <div class="overview-item-redesigned" data-aos="float-up" data-aos-delay="100">
                     <div class="overview-icon">🏝️</div>
                     <h3>The Archipelago</h3>
                     <p>Over 17,000 islands, the world's largest island country by area.</p>
                 </div>
-                <div class="overview-item-redesigned">
+                <div class="overview-item-redesigned" data-aos="float-up" data-aos-delay="200">
                     <div class="overview-icon">⛰️</div>
                     <h3>Mountains & Volcanoes</h3>
                     <p>Part of the Pacific Ring of Fire with numerous active volcanoes and high peaks.</p>
                 </div>
-                <div class="overview-item-redesigned">
+                <div class="overview-item-redesigned" data-aos="float-up" data-aos-delay="300">
                     <div class="overview-icon">🌳</div>
                     <h3>Lush Rainforests</h3>
                     <p>Home to the third-largest area of tropical rainforests globally.</p>
                 </div>
-                <div class="overview-item-redesigned">
+                <div class="overview-item-redesigned" data-aos="float-up" data-aos-delay="400">
                     <div class="overview-icon">🌊</div>
                     <h3>Marine Richness</h3>
                     <p>Located at the heart of the Coral Triangle, the center of marine biodiversity.</p>
@@ -80,9 +132,9 @@
     <!-- Remarkable Features Section -->
     <section id="remarkable-features" class="content-section">
         <div class="content-container">
-            <h2 class="section-title">Remarkable Geographical Features</h2>
+            <h2 class="section-title" data-aos="float-up">Remarkable Geographical Features</h2>
 
-            <div class="content-block">
+            <div class="content-block" data-aos="slideInFromRight">
                 <div class="feature-item">
                     <div class="feature-image">
                         <img src="images/rajaampat.jpg" alt="Raja Ampat">
@@ -98,7 +150,7 @@
                 </div>
             </div>
 
-            <div class="content-block">
+            <div class="content-block" data-aos="slideInFromLeft">
                 <div class="feature-item feature-item-reverse">
                     <div class="feature-image">
                         <img src="images/mount bromo.jpg" alt="Mount Bromo">
@@ -113,7 +165,7 @@
                 </div>
             </div>
 
-            <div class="content-block">
+            <div class="content-block" data-aos="slideInFromRight">
                 <div class="feature-item">
                     <div class="feature-image">
                         <img src="images/lake toba.jpg" alt="Lake Toba">
@@ -135,10 +187,10 @@
     <!-- Geographical Regions Section -->
     <section class="geography-regions-section">
         <div class="content-container">
-            <h2 class="section-title">Explore Indonesia's Regions</h2>
+            <h2 class="section-title" data-aos="float-up">Explore Indonesia's Regions</h2>
             <div class="regions-container">
                 <!-- Region Card: Sumatra -->
-                <div class="region-card">
+                <div class="region-card" data-aos="rotate-in" data-aos-delay="100">
                     <div class="region-image" style="background-image: url('images/sumatra.jpg');"></div>
                     <div class="region-content">
                         <h3>Sumatra</h3>
@@ -147,7 +199,7 @@
                 </div>
 
                 <!-- Region Card: Java -->
-                <div class="region-card">
+                <div class="region-card" data-aos="rotate-in" data-aos-delay="200">
                     <div class="region-image" style="background-image: url('images/java.jpg');"></div>
                     <div class="region-content">
                         <h3>Java</h3>
@@ -157,7 +209,7 @@
                 </div>
 
                 <!-- Region Card: Kalimantan -->
-                <div class="region-card">
+                <div class="region-card" data-aos="rotate-in" data-aos-delay="300">
                     <div class="region-image" style="background-image: url('images/kalimantan.jpg');"></div>
                     <div class="region-content">
                         <h3>Kalimantan (Borneo)</h3>
@@ -166,7 +218,7 @@
                 </div>
 
                 <!-- Region Card: Sulawesi -->
-                <div class="region-card">
+                <div class="region-card" data-aos="rotate-in" data-aos-delay="400">
                     <div class="region-image" style="background-image: url('images/sulawesi.jpg');"></div>
                     <div class="region-content">
                         <h3>Sulawesi</h3>
@@ -175,7 +227,7 @@
                 </div>
 
                 <!-- Region Card: Papua -->
-                <div class="region-card">
+                <div class="region-card" data-aos="rotate-in" data-aos-delay="500">
                     <div class="region-image" style="background-image: url('images/papua.jpg');"></div>
                     <div class="region-content">
                         <h3>Papua</h3>
